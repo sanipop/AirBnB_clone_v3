@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-route for handling place and amenities linking
+route for place amenities
 """
 from flask import jsonify, abort
 from os import getenv
@@ -13,9 +13,9 @@ from api.v1.views import app_views, storage
                  strict_slashes=False)
 def amenity_by_place(place_id):
     """
-    get all amenities of a place
-    :param place_id: amenity id
-    :return: all amenities
+    amenities by place
+    :param place_id: id for amenity
+    :return: amenities all
     """
     fetched_obj = storage.get("Place", str(place_id))
 
@@ -35,9 +35,9 @@ def amenity_by_place(place_id):
                  strict_slashes=False)
 def unlink_amenity_from_place(place_id, amenity_id):
     """
-    unlinks an amenity in a place
-    :param place_id: place id
-    :param amenity_id: amenity id
+    unjoin amenities to place
+    :param place_id: id of place
+    :param amenity_id: id of amenity
     :return: empty dict or error
     """
     if not storage.get("Place", str(place_id)):
@@ -71,10 +71,10 @@ def unlink_amenity_from_place(place_id, amenity_id):
                  strict_slashes=False)
 def link_amenity_to_place(place_id, amenity_id):
     """
-    links a amenity with a place
-    :param place_id: place id
-    :param amenity_id: amenity id
-    :return: return Amenity obj added or error
+    connect amenities with place
+    :param place_id: id for place
+    :param amenity_id: id for amenity
+    :return: error or the new obj
     """
 
     fetched_obj = storage.get("Place", str(place_id))

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-route for handling State objects and operations
+route for states
 """
 from flask import jsonify, abort, request
 from api.v1.views import app_views, storage
@@ -10,8 +10,8 @@ from models.state import State
 @app_views.route("/states", methods=["GET"], strict_slashes=False)
 def state_get_all():
     """
-    retrieves all State objects
-    :return: json of all states
+    get all state object
+    :return: json states
     """
     state_list = []
     state_obj = storage.all("State")
@@ -24,8 +24,8 @@ def state_get_all():
 @app_views.route("/states", methods=["POST"], strict_slashes=False)
 def state_create():
     """
-    create state route
-    :return: newly created state obj
+    state create route
+    :return: obj newly created
     """
     state_json = request.get_json(silent=True)
     if state_json is None:
@@ -44,9 +44,9 @@ def state_create():
 @app_views.route("/states/<state_id>",  methods=["GET"], strict_slashes=False)
 def state_by_id(state_id):
     """
-    gets a specific State object by ID
-    :param state_id: state object id
-    :return: state obj with the specified id or error
+    Id to access state
+    :param state_id: sid for state object
+    :return: object with id else error
     """
 
     fetched_obj = storage.get("State", str(state_id))
@@ -60,9 +60,9 @@ def state_by_id(state_id):
 @app_views.route("/states/<state_id>",  methods=["PUT"], strict_slashes=False)
 def state_put(state_id):
     """
-    updates specific State object by ID
-    :param state_id: state object ID
-    :return: state object and 200 on success, or 400 or 404 on failure
+    id updated stated
+    :param state_id: id for state object
+    :return: success 200 or state obj, failure is 400s error
     """
     state_json = request.get_json(silent=True)
     if state_json is None:
@@ -81,8 +81,8 @@ def state_put(state_id):
                  strict_slashes=False)
 def state_delete_by_id(state_id):
     """
-    deletes State by id
-    :param state_id: state object id
+    id to delete state
+    :param state_id: id to get state objects
     :return: empty dict with 200 or 404 if not found
     """
 

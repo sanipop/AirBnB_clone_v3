@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-index
+index route
 """
 
 from flask import jsonify
@@ -13,7 +13,7 @@ from models import storage
 def status():
     """
     status route
-    :return: response with json
+    :return: status injson
     """
     data = {
         "status": "OK"
@@ -28,8 +28,8 @@ def status():
 @app_views.route("/stats", methods=['GET'], strict_slashes=False)
 def stats():
     """
-    stats of all objs route
-    :return: json of all objs
+    list all stats in json
+    :return: all stats injson
     """
     data = {
         "amenities": storage.count("Amenity"),

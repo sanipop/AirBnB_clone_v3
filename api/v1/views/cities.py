@@ -57,7 +57,7 @@ def city_create(state_id):
                  strict_slashes=False)
 def city_by_id(city_id):
     """
-    through id get coty
+    through id get city
     :param city_id: id of city object
     :return: city obj with the specified id or error
     """
